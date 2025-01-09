@@ -1,0 +1,179 @@
+<html lang="en">
+
+<head>
+    <%= htmlWebpackPlugin.options.links %>
+    <%= htmlWebpackPlugin.options.headerHTML %>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+</head>
+
+<body>
+    <%= htmlWebpackPlugin.options.menuHTML %>
+    <div class="hero_section">
+        <img class="background" src="./assets/images/merchant_slate_cover.webp"
+            alt="Abstract and empowering digital artwork of a confident male merchant standing in the middle, with a female buyer beside him.">
+        <section>
+            <h2>Unlock Futuristic Global Commerce</h2>
+            <p>
+                Transform how you do business with decentralised, secure, and transparent
+                payments
+            </p>
+            <button class="cta_button cta_button_light" onclick="window.location.href='/app'">
+                Try Now
+            </button>
+        </section>
+    </div>
+    <!-- <pre><code class="javascript">const test = () => {
+        console.log(`Test`);
+    };
+    test();</code></pre> -->
+    <section>
+        <h2>Why Choose MerchantSlate?</h2>
+        <p><strong>No Middlemen. Greater Control.</strong><br>
+            Traditional payment processors eat into your profits with high fees. With MerchantSlate, there are no
+            intermediaries—your transactions are direct, with a transparent small fee shared among shareholders.</p>
+
+        <p><strong>Instant, Borderless Payments.</strong><br>
+            Operate globally without worrying about payment delays or borders. With MerchantSlate's blockchain
+            technology,
+            transactions happen instantly, anywhere in the world.</p>
+
+        <p><strong>Unmatched Security.</strong><br>
+            Blockchain offers the ultimate protection against fraud, ensuring transparency and immutability. Your
+            business
+            and customers are safe with every transaction.</p>
+
+        <p><strong>No Bank Approval. No Hassles.</strong><br>
+            Get started quickly without relying on banks or third-party intermediaries. Simply integrate and start
+            accepting
+            payments right away.</p>
+    </section>
+    <section>
+        <h2>MerchantSlate vs. Traditional E-Commerce <br>Payment Processors</h2>
+        <table class="features-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>MerchantSlate</th>
+                    <th>Traditional E-Commerce Processors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fees</td>
+                    <td>Low fees, direct payments</td>
+                    <td>High fees, hidden charges</td>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td>Instant blockchain payments</td>
+                    <td>Delays of up to days</td>
+                </tr>
+                <tr>
+                    <td>Transparency</td>
+                    <td>Public blockchain ledger</td>
+                    <td>Opaque fee structures</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Blockchain security</td>
+                    <td>Vulnerable to fraud and hacks</td>
+                </tr>
+                <tr>
+                    <td>Global Reach</td>
+                    <td>Instant, borderless payments</td>
+                    <td>Currency conversion issues</td>
+                </tr>
+                <tr>
+                    <td>Flexibility</td>
+                    <td>Customisable fee structures</td>
+                    <td>Fixed fees with limited flexibility</td>
+                </tr>
+                <tr>
+                    <td>Ease of Setup</td>
+                    <td>Quick integration with blockchain</td>
+                    <td>Requires bank approval</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>How MerchantSlate Can Transform <br>Your Business</h2>
+        <p><strong>Lower Transaction Costs.</strong><br>
+            Cut out the middlemen and save on processing fees. MerchantSlate offers a low-cost payment solution that
+            allows
+            you to offer better prices and increase your profit margins.</p>
+
+        <p><strong>Go Global Without Barriers.</strong><br>
+            Expand your market globally with ease. Accept payments from anywhere without worrying about currency
+            conversion
+            or expensive international fees.</p>
+
+        <p><strong>Earn Passive Income as a Subscriber.</strong><br>
+            MerchantSlate rewards you as a subscriber. By holding a stake in the network, you can earn a share of
+            transaction fees, providing a passive income stream.</p>
+
+        <p><strong>Be Part of the Blockchain Revolution.</strong><br>
+            Embrace the future with blockchain technology and cryptocurrencies. MerchantSlate connects your business to
+            the
+            global digital economy with seamless crypto payment integration.</p>
+    </section>
+    <section>
+        <h2>Our Blockchain Technology</h2>
+        <p><strong>Revolutionising Payments with Blockchain.</strong><br>
+            MerchantSlate uses cutting-edge blockchain technology to offer secure, transparent, and fast transactions.
+            By
+            using blockchain, we eliminate the need for third-party validators, reducing both cost and complexity in
+            payment
+            processing.</p>
+
+        <p><strong>Smart Contracts for Payment Processing.</strong><br>
+            We take blockchain technology a step further by utilising smart contracts to automate payments, ensuring
+            that
+            transactions happen seamlessly without human intervention. This reduces the risk of errors and increases
+            efficiency.</p>
+
+        <p><strong>Decentralised Trust.</strong><br>
+            Trust is decentralised with blockchain. Transactions are verified through consensus algorithms, making fraud
+            practically impossible and ensuring data integrity for all parties involved.</p>
+    </section>
+    <section>
+        <h2>FAQs</h2>
+        <p><strong>What currencies can I accept with MerchantSlate?</strong><br>
+            MerchantSlate supports a wide range of cryptocurrencies, enabling businesses to accept payments in digital
+            currencies from anywhere in the world.</p>
+
+        <p><strong>How do I get started with MerchantSlate?</strong><br>
+            Getting started is easy! Simply integrate our SDK, configure your payment settings, and begin accepting
+            payments
+            directly in your wallet.</p>
+
+        <p><strong>How are transaction fees calculated?</strong><br>
+            Transaction fees are calculated as a small percentage of the payment amount. The fee structure is
+            transparent
+            and predictable, with no hidden costs.</p>
+
+        <p><strong>Is MerchantSlate suitable for all types of businesses?</strong><br>
+            Yes! Whether you run an e-commerce platform, a SaaS business, or a digital marketplace, MerchantSlate can be
+            integrated to suit your needs and help you scale globally.</p>
+    </section>
+    <section id="trynow" class="cta">
+        <h2>Ready to Join <br>the Future of Global Commerce?</h2>
+        <p>MerchantSlate is more than just a payment solution—it's a transformative approach to doing business.
+            Eliminate
+            middlemen, speed up transactions, and gain more control over your earnings. Join us in reshaping commerce
+            with
+            blockchain technology.</p>
+        <section class="cta">
+            <h2>Learn More</h2>
+            <p>MerchantSlate system is a comprehensive system with a secure smart contract at the heart of the system.
+            </p>
+            <button class="cta_button" onclick="window.location.href='/package'">View Contract</button>
+            <button class="cta_button cta_button_outline"
+                onclick="window.location.href='./assets/merchantslate_paper.pdf'">Research Paper</button>
+        </section>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+{
+    "background_color": "#fefefe",
+    "theme_color": "#785afb",
+    "icons": [
+        {
+            "src": "/assets/images/app_icon.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/assets/images/app_icon.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "About",
+            "short_name": "About",
+            "description": "About MerchantSlate",
+            "url": "/about",
+            "icons": [
+                {
+                    "src": "/assets/images/app_icon.png",
+                    "type": "image/png",
+                    "sizes": "512x512",
+                    "purpose": "maskable"
+                },
+                {
+                    "src": "/assets/images/app_icon.png",
+                    "type": "image/png",
+                    "sizes": "512x512",
+                    "purpose": "any"
+                }
+            ]
+        }
+    ],
+    "display": "standalone",
+    "orientation": "portrait",
+    "short_name": "Merchant",
+    "start_url": "/",
+    "description": "MerchantSlate instant payments for merchants with a built-in complete database",
+    "name": "MerchantSlate"
+}

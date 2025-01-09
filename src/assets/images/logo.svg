@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 100"
+   width="100"
+   height="100"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="true"
+     showgrid="false"
+     inkscape:zoom="3.6258098"
+     inkscape:cx="32.958154"
+     inkscape:cy="77.362028"
+     inkscape:window-width="1536"
+     inkscape:window-height="849"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10">
+    <sodipodi:guide
+       position="19.82069,79.979431"
+       orientation="-1,0"
+       id="guide10"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <sodipodi:guide
+       position="80,50.60883"
+       orientation="-1,0"
+       id="guide11"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <sodipodi:guide
+       position="57.708233,80"
+       orientation="0,1"
+       id="guide12"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <sodipodi:guide
+       position="61.926186,20"
+       orientation="0,1"
+       id="guide13"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <inkscape:grid
+       id="grid14"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true"
+       snapvisiblegridlinesonly="true"
+       dotted="true" />
+  </sodipodi:namedview>
+  <path
+     id="path14-7"
+     style="fill:#007bff;fill-opacity:1;stroke:none;stroke-width:1.21156;stroke-opacity:1"
+     d="M -19.820312 13.021484 A 6.9786716 6.9786716 0 0 1 -12.841797 20 A 6.9786716 6.9786716 0 0 1 -19.820312 26.978516 L -19.820312 73.201172 A 6.9786716 6.9786716 0 0 1 -12.841797 80.179688 A 6.9786716 6.9786716 0 0 1 -19.820312 87.158203 A 6.9786716 6.9786716 0 0 1 -26.798828 80.179688 L -73.021484 80.179688 A 6.9786716 6.9786716 0 0 1 -80 87.158203 A 6.9786716 6.9786716 0 0 1 -86.978516 80.179688 A 6.9786716 6.9786716 0 0 1 -80 73.201172 L -80 26.978516 A 6.9786716 6.9786716 0 0 1 -86.978516 20 A 6.9786716 6.9786716 0 0 1 -80 13.021484 A 6.9786716 6.9786716 0 0 1 -73.021484 20 L -26.798828 20 A 6.9786716 6.9786716 0 0 1 -19.820312 13.021484 z M -28 28 L -72 28 L -72 72 L -28 72 L -28 28 z "
+     transform="scale(-1,1)" />
+  <!-- Background Circle (representing the decentralized network) -->
+  <!-- Inner Circles (representing nodes of the network) -->
+  <!-- Connecting Lines -->
+  <!-- Diagonal Lines (adding movement and abstraction) -->
+</svg>

@@ -1,0 +1,30 @@
+# Policies
+<IfModule mod_headers.c>
+  SetEnvIf Origin ^*\.merchantslate\.com$ ORIGIN=$0
+  Header always set Access-Control-Allow-Origin %{ORIGIN}e env=ORIGIN
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Content-Security-Policy ""
+  Header set Permissions-Policy ""
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Add content type
+<Files about>
+  Header set Content-Type "text/html"
+</Files>
+
+# disable indexing
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+
+  # Unique files
+  # RewriteRule ^sw.js /code/sw.js [L,NC]
+</IfModule>
+
+# Errors
+ErrorDocument 404 /404
+ErrorDocument 403 /404
