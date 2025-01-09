@@ -4,6 +4,7 @@ const
 
 	// variable data
 	websiteTitle = `instant payments for merchants`,
+	websiteDescription = `MerchantSlate instant payments for merchants with a built-in complete database`,
 	coverImage = `merchant_slate_cover.webp`,
 
 	// pages 
@@ -40,7 +41,7 @@ const
 		author: `${websiteName} Team`,
 		image: coverImageLink,
 		robots: `index, follow`,
-		description: `${websiteTitle} ${websiteName} platform`,
+		description: `${websiteDescription}`,
 		viewport: `width=device-width, initial-scale=1.0`,
 		charset: { charset: `UTF-8` },
 		'http-equiv': {
@@ -50,11 +51,11 @@ const
 		'twitter:card': `summary_large_image`,
 		'twitter:title': {
 			property: 'twitter:title',
-			content: `${websiteTitle} | ${websiteName}`
+			content: `${websiteName} | ${websiteTitle}`
 		},
 		'twitter:description': {
 			property: 'twitter:description',
-			content: `${websiteTitle} ${websiteName} platform`
+			content: `${websiteDescription}`
 		},
 		'twitter:image': {
 			property: 'twitter:image',
@@ -87,12 +88,12 @@ const
 		},
 		'og:title': {
 			property: 'og:title',
-			content: websiteTitle,
+			content: `${websiteName} | ${websiteTitle}`,
 			name: `title`,
 		},
 		'og:description': {
 			property: 'og:description',
-			content: `${websiteTitle} ${websiteName} platform`,
+			content: `${websiteDescription}`,
 			name: `description`,
 		},
 		'og:image': {
@@ -177,7 +178,7 @@ module.exports = {
 			],
 		}),
 		new HtmlWebpackPlugin({
-			title: `${websiteTitle} | ${websiteName}`,
+			title: `${websiteName} | ${websiteTitle}`,
 			links: canonical(``),
 			template: './src/pages/home/home.html',
 			meta,
