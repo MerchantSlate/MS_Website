@@ -15,7 +15,6 @@ const
 	websiteDomain = `merchantslate.com`,
 	developDir = `build`,
 	productionDir = `public_html`,
-	outputFile = `merchant_script`,
 	publishedTime = `2025-01-03T18:19:05+01:00`,
 
 	// imports
@@ -147,7 +146,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, productionDir),
-		filename: `${outputFile}.[name].[contenthash].js`,
+		filename: `[name].[contenthash].js`,
 	},
 	resolve: {
 		extensions: ['.ts', '.js'], // Resolve .ts and .js files
@@ -180,7 +179,9 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin(envKeys),
 		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns: [developDir],
+			cleanOnceBeforeBuildPatterns: [
+				path.resolve(__dirname, productionDir, '*.js'), // Clear only .js files in the output directory
+			],
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
