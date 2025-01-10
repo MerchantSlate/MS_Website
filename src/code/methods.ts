@@ -620,18 +620,19 @@ const
 
         itemUnit({
             isShort: true,
-            unitCover: !holdings && !offered ? `No Holdings` : ``,
             unit_frame: selectAllChild(`.unit_frame`, stakes_distribution)[0],
             mainText: `${holdings + offered} stakes `
                 + `(${(100 * (holdings + offered) / totalStakesNumber)?.toFixed(1)}%) `
-                + `- offered (${offered})`,
-            subText: `Holdings`,
-            mainButtonText: `Offer Stake`,
-            mainButtonAction: () => offerStakeMethod(chain, holdings),
-            squareButtonLogo: `./assets/images/arrow_forward.svg`,
-            squareButtonLogoAlt: `arrow forward icon`,
-            squareButtonDescription: `Transfer Stake`,
-            squareButtonAction: () => transferStakeMethod(chain, holdings),
+                + (offered ? `- offered (${offered})` : ``),
+            subText: `Holdings - Total Stakes (${totalStakesNumber})`,
+            ...!holdings ? {} : {
+                mainButtonText: `Offer Stake`,
+                mainButtonAction: () => offerStakeMethod(chain, holdings),
+                squareButtonLogo: `./assets/images/arrow_forward.svg`,
+                squareButtonLogoAlt: `arrow forward icon`,
+                squareButtonDescription: `Transfer Stake`,
+                squareButtonAction: () => transferStakeMethod(chain, holdings),
+            },
         });
     },
     initiateConnect = async (
@@ -722,8 +723,6 @@ const
         });
 
         listChains(chain, initiate);
-
-        homePage();
 
         isStakes ? stakePage()
             : homePage();
