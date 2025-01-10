@@ -66,6 +66,13 @@ const
         menu_dropdown_text.innerText = defaultChain;
     };
 
+console.log(
+    `MIT License. \n`
+    + `Source Code https://github.com/MerchantSlate/Website \n`
+    + `\nWelcome To MerchantSlate!\n `
+);
+
 export {
+    menu_buttons,
     listChains
 }

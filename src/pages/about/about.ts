@@ -1,7 +1,4 @@
-import { select } from "../../code/selectors";
+import { updateFooter } from "../../code/footer";
+import '../../styles.css';
 
-const
-    menu_connect = select(`.menu_connect`);
-
-menu_connect.innerText = `Dashboard`;
-menu_connect.onclick = () => window.location.href = '/app';
+updateFooter(`about`);

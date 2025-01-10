@@ -15,7 +15,7 @@ const
 	websiteDomain = `merchantslate.com`,
 	developDir = `build`,
 	productionDir = `public_html`,
-	outputFile = `merchant_web`,
+	outputFile = `merchant_script`,
 	publishedTime = `2025-01-03T18:19:05+01:00`,
 
 	// imports
@@ -121,6 +121,7 @@ const
 	read = file => fs.readFileSync(path.resolve(__dirname, file), 'utf8'),
 	headerHTML = read(`./src/common/header.html`),
 	menuHTML = read(`./src/common/menu.html`),
+	footerHTML = read(`./src/common/footer.html`),
 
 	// Environment keys
 	envKeys = {};
@@ -128,15 +129,25 @@ dotenv.config();
 for (const key in process.env)
 	envKeys[`process.env.${key}`] = JSON.stringify(process.env[key]);
 
+// entry points
+const entryPoints = {
+	home: './src/pages/home/home.ts', // Entry file for TypeScript
+};
+for (let i = 0; i < pagesList.length; i++) {
+	const fileName = pagesList[i];
+	entryPoints[fileName] =
+		`./src/pages/${fileName}/${fileName}.ts`;
+};
+
 module.exports = {
-	entry: './src/pages/home/home.ts', // Entry file for TypeScript
+	entry: entryPoints,
 	performance: {
 		maxAssetSize: 2 * 1024 ** 2,
 		maxEntrypointSize: 2 * 1024 ** 2,
 	},
 	output: {
 		path: path.resolve(__dirname, productionDir),
-		filename: `${outputFile}.js`,
+		filename: `${outputFile}.[name].[contenthash].js`,
 	},
 	resolve: {
 		extensions: ['.ts', '.js'], // Resolve .ts and .js files
@@ -178,15 +189,18 @@ module.exports = {
 			],
 		}),
 		new HtmlWebpackPlugin({
+			chunks: [`home`],
 			title: `${websiteName} | ${websiteTitle}`,
 			links: canonical(``),
 			template: './src/pages/home/home.html',
 			meta,
 			headerHTML,
 			menuHTML,
+			footerHTML,
 		}),
 		...pagesList.map(filename => {
 			return new HtmlWebpackPlugin({
+				chunks: [filename],
 				title: `${filename?.toUpperCase()} | ${websiteName}`,
 				links: canonical(`/${filename}`),
 				template: `./src/pages/${filename}/${filename}.html`,
@@ -194,16 +208,16 @@ module.exports = {
 				meta,
 				headerHTML,
 				menuHTML,
+				footerHTML,
 			})
 		}),
-		new WebpackObfuscator(
-			{
-				rotateStringArray: true,
-				stringArray: true,
-				stringArrayThreshold: 0.8, // Percentage of strings to obfuscate
-			},
-			//   ['excluded_bundle.js'], // Exclude specific files if needed
-		),
+		// new WebpackObfuscator(
+		// 	{
+		// 		rotateStringArray: true,
+		// 		stringArray: true,
+		// 		stringArrayThreshold: 0.8, // Percentage of strings to obfuscate
+		// 	},
+		// ),
 		new SitemapPlugin({
 			base: websiteLink, // Replace with your site's base URL
 			paths: [
@@ -224,7 +238,7 @@ module.exports = {
 			new TerserPlugin({ // Minify JavaScript
 				terserOptions: {
 					compress: {
-						drop_console: true, // Remove console logs
+						drop_console: false, // Do not remove console logs
 					},
 				},
 			}),

@@ -39,10 +39,19 @@ import {
     selectAllChild
 } from './selectors';
 import { listChains } from './menu';
+import { getCurrentPage } from "./footer";
 
 type ListType = `payments` | `products`;
 
+let
+    onlyMyPayments = false,
+    onlyMyStakes = false,
+    isMerchantPayments = false,
+    isMerchantProducts = false,
+    pageNoCurrentProducts = `0`;
+
 const
+    isStakes = getCurrentPage() == `stakes`,
     menu_connect = select(`.menu_connect`),
     processHash = (hash?: string) => {
         if (hash) {
@@ -77,19 +86,10 @@ const
     // stake list
     stakes_section = select(`.stakes_section`),
     stakes_section_distribution = select(`.stakes_section_distribution`),
-    stake_list_button = select(`.stake_list_button`),
-    payment_products_button = select(`.payment_products_button`),
     stakes_list = select(`.stakes_list`),
-    stakes_distribution = select(`.stakes_distribution`);
+    stakes_distribution = select(`.stakes_distribution`),
 
-let
-    onlyMyPayments = false,
-    onlyMyStakes = false,
-    isMerchantPayments = false,
-    isMerchantProducts = false,
-    pageNoCurrentProducts = `0`;
-
-const
+    // page size defaults
     pageSizeDefaultProducts = `3`,
     pageSizeDefaultPayments = `2`,
     listType = (
@@ -654,7 +654,11 @@ const
                     menu_connect.innerText = `Connected`;
                     menu_connect.classList.add(`disable`);
                     menu_connect.onclick = () => { };
-                    loadAll(chain);
+                    isStakes ? loadStakes(chain)
+                        : (
+                            loadPaymentsMethod(chain),
+                            loadProductsMethod(chain)
+                        );
                     showMeToggle = true;
                 };
             } else {
@@ -670,11 +674,6 @@ const
             };
         };
     },
-    loadAll = async (chain: ChainIds) => await Promise.all([
-        loadProductsMethod(chain),
-        loadPaymentsMethod(chain),
-        loadStakes(chain)
-    ]),
     initiate = async (
         chain: ChainIds
     ) => {
@@ -693,31 +692,21 @@ const
             stakes_distribution.appendChild(unitFrame.cloneNode(1));
 
         const
-            stakeSection = () => {
+            stakePage = () => {
                 stakes_section.classList.remove(`hide`);
                 stakes_section_distribution.classList.remove(`hide`);
                 payment_section.classList.add(`hide`);
                 product_section.classList.add(`hide`);
                 loadStakes(chain);
-                payment_products_button.classList.remove(`footer_button_selected`);
-                stake_list_button.classList.add(`footer_button_selected`);
             },
-            productsSection = () => {
+            homePage = () => {
                 stakes_section.classList.add(`hide`);
                 stakes_section_distribution.classList.add(`hide`);
                 payment_section.classList.remove(`hide`);
                 product_section.classList.remove(`hide`);
                 loadPaymentsMethod(chain);
                 loadProductsMethod(chain);
-                payment_products_button.classList.add(`footer_button_selected`);
-                stake_list_button.classList.remove(`footer_button_selected`);
             };
-
-        // payment products
-        payment_products_button.onclick = () => productsSection();
-
-        // stake list
-        stake_list_button.onclick = () => stakeSection();
 
         config({
             ARBITRUM_RPC: process.env.RPC_URL_ARBITRUM || ``,
@@ -734,7 +723,11 @@ const
 
         listChains(chain, initiate);
 
-        loadAll(chain);
+        homePage();
+
+        isStakes ? stakePage()
+            : homePage();
+
         initiateConnect(chain);
     };
 

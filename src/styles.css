@@ -49,7 +49,7 @@ body {
 header {
     min-height: 100vh;
     max-height: 1000px;
-    background-color: #475d8b;
+    background-color: var(--heading_sub);
     color: #fff;
     text-align: center;
     width: 100%;
@@ -91,7 +91,7 @@ section {
     width: 100vw;
     height: 500px;
     max-height: 100vh;
-    margin-top: -8px;
+    margin-top: -40px;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -241,7 +241,7 @@ section {
 }
 
 .features-table th {
-    background-color: #475d8b;
+    background-color: var(--heading_sub);
     color: #fff
 }
 
@@ -251,12 +251,12 @@ section {
 }
 
 .cta_button {
-    border: solid 2px #475d8b;
+    border: solid 2px var(--heading_sub);
     border-radius: 8px;
     width: 240px;
     max-width: 80vw;
     margin-top: 24px;
-    background-color: #475d8b;
+    background-color: var(--heading_sub);
     color: #fff;
     padding: 15px 30px;
     font-size: 1.2em;
@@ -264,13 +264,13 @@ section {
 }
 
 .cta_button_light {
-    color: #475d8b;
+    color: var(--heading_sub);
     background-color: #fff;
 }
 
 .cta_button_outline {
-    border: solid 2px #475d8b;
-    color: #475d8b;
+    border: solid 2px var(--heading_sub);
+    color: var(--heading_sub);
     background-color: transparent;
 }
 
@@ -283,7 +283,7 @@ section {
 }
 
 input {
-    border: solid 2px #475d8b;
+    border: solid 2px var(--heading_sub);
     border-radius: 8px;
     width: calc(240px - 32px);
     max-width: calc(80vw - 32px);
@@ -689,11 +689,17 @@ input {
     color: var(--heading_sub);
     background-color: var(--translucent);
     font-size: 16px;
-    font-weight: 700;
-    width: 190px;
+    font-weight: 300;
+    width: 110px;
+    border-right: solid 1px var(--heading_sub);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer_button_selected {
+    font-weight: 700;
     color: var(--white);
     background-color: var(--heading_sub);
 }
@@ -715,7 +721,7 @@ input {
     }
 
     .footer_button {
-        width: 50%;
+        width: 25%;
     }
 
     .menu_dropdown_list {
