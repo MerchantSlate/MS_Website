@@ -625,7 +625,7 @@ const
             mainText: `${holdings + offered} stakes `
                 + `(${(100 * (holdings + offered) / totalStakesNumber)?.toFixed(1)}%) `
                 + (offered ? `- offered (${offered})` : ``),
-            subText: `Holdings - Total Stakes (${totalStakesNumber})`,
+            subText: `Holdings - ${chain} Stakes (${totalStakesNumber})`,
             ...!holdings ? {} : {
                 mainButtonText: `Offer Stake`,
                 mainButtonAction: () => offerStakeMethod(chain, holdings),
