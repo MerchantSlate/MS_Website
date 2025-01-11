@@ -36,6 +36,6 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
-    "merchantslate": "^0.1.6"
+    "merchantslate": "^0.1.7"
   }
 }
