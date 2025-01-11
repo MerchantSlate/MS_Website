@@ -29,6 +29,7 @@ import {
     toWei,
     totalStakes,
     transferStake,
+    truncateText,
     updateProduct
 } from "merchantslate"
 import { itemUnit } from './ui';
@@ -652,9 +653,18 @@ const
                     config({
                         walletSeedPhrase
                     });
-                    menu_connect.innerText = `Connected`;
+                    const
+                        address = await getWalletAddress(chain) || ``,
+                        updateButtonText = (text?: string) => {
+                            menu_connect.innerText = text || truncateText(address, 5);
+                        };
+                    updateButtonText();
                     menu_connect.classList.add(`disable`);
-                    menu_connect.onclick = () => { };
+                    menu_connect.onclick = () => {
+                        navigator.clipboard.writeText(address);
+                        updateButtonText(`Copied!`);
+                        setTimeout(updateButtonText, 2e3);
+                    };
                     isStakes ? loadStakes(chain)
                         : (
                             loadPaymentsMethod(chain),
