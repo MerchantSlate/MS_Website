@@ -2347,10 +2347,10 @@ memfs@^4.6.0:
     tree-dump "^1.0.1"
     tslib "^2.0.0"
 
-merchantslate@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/merchantslate/-/merchantslate-0.2.3.tgz#47f6a509a708407f7244815cd90d839c2ed6852c"
-  integrity sha512-0bIYtBWT74mE8T6L1+p6pliIq5L+yTQENpV197ZZpQLE5By9RiuiSacvYogZ1dITTqFsXDZL4bPEM99pXSwSTQ==
+merchantslate@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/merchantslate/-/merchantslate-0.2.4.tgz#271d758f82c6d87a00fe915721b18f8c48f84192"
+  integrity sha512-nWX3gGRi8C0KCN5a5D8l5VVDaRQ3k5y0R3Y2IWztmsuoGaj38lzk8I8klW1NvZU3EHwowR9JF6tZxw4/m5J59A==
   dependencies:
     ethers "^6.13.4"
 
