@@ -1,6 +1,7 @@
 import {
     ChainIds,
     EVMAddress,
+    ErrorResponse,
     PaymentData,
     ProductChain,
     ProductData,
@@ -54,14 +55,18 @@ let
 const
     isStakes = getCurrentPage() == `stakes`,
     menu_connect = select(`.menu_connect`),
-    processHash = (hash?: string) => {
-        if (hash) {
-            console.log(`Transaction successful`, hash);
-            alert(`Transaction successful\n${hash}`);
+    processError = (error: ErrorResponse) => {
+        alert(error?.errorNote);
+        return undefined
+    },
+    processHash = (hash?: string | ErrorResponse) => {
+        if (typeof hash == `string`) {
+            setTimeout(() => alert(`Transaction successful\n${hash}`));
+            return hash
         } else {
-            console.log(`Transaction failed!`, hash);
-            alert(`Transaction failed!`);
+            setTimeout(() => alert(`Transaction failed! ${hash?.errorNote}`));
         };
+        return undefined
     },
     prod_add = select(`.prod_add`),
     payment_section = select(`.payment_section`),
@@ -159,10 +164,9 @@ const
     addProduct = async (
         chain: ChainIds,
     ): Promise<void> => {
-        const confirmed = confirm(
-            `New Product Fee `
-            + await productFeeText(chain)
-        );
+        const res = await productFeeText(chain);
+        if (!res?.success) return processError(res);
+        const confirmed = confirm(`New Product Fee ${res?.data}`);
         if (confirmed) updateProductMethod({ chain });
     },
     updateProductMethod = async ({
@@ -172,41 +176,40 @@ const
         chain: ChainIds,
         productId?: string,
     }): Promise<void> => {
-        const
-            productPrice = prompt(`Enter product price`),
-            tokenAddress = prompt(`Enter token address (default = native)`) as EVMAddress,
-            quantity = prompt(`Enter product quantity (default = unlimited)`) || `1`,
-            commissionAddress = prompt(`Enter commission address (optional)`) as EVMAddress,
-            commissionPercentage = prompt(`Enter commission percentage (0-100)`) || `0`;
-
+        const productPrice = prompt(`Enter product price`);
         if (!productPrice) {
             alert(`Price is required.`);
             return;
         };
 
+        const
+            tokenAddress = prompt(`Enter token address (default = native)`) as EVMAddress,
+            quantity = prompt(`Enter product quantity (default = unlimited)`) || `1`,
+            commissionAddress = prompt(`Enter commission address (optional)`) as EVMAddress,
+            commissionPercentage = prompt(`Enter commission percentage (0-100)`) || `0`,
+            res = await updateProduct({
+                chain,
+                productId,
+                productPrice,
+                tokenAddress,
+                quantity,
+                commissionAddress,
+                commissionPercentage,
+            });
+        if (!res?.success) return processError(res);
+
         const {
             productId: productIdReturned,
             hash,
             isNew,
-        }: any = await updateProduct({
-            chain,
-            productId,
-            productPrice,
-            tokenAddress,
-            quantity,
-            commissionAddress,
-            commissionPercentage,
-        });
-
-        if (hash) {
-            if (!isNew) {
-                loadProductsMethod(chain, pageNoCurrentProducts);
-                alert(`Product #${productId} updated successfully!`);
-            } else {
-                loadProductsMethod(chain);
-                alert(`Product #${productIdReturned} added successfully!`);
-            };
-        } else processHash(hash);
+        } = res?.data;
+        if (!isNew) {
+            loadProductsMethod(chain, pageNoCurrentProducts);
+            alert(`Product #${productId} updated successfully!`);
+        } else {
+            loadProductsMethod(chain);
+            alert(`Product #${productIdReturned} added successfully!`);
+        };
     },
     deleteProductMethod = async (
         chain: ChainIds,
@@ -214,59 +217,50 @@ const
     ): Promise<void> => {
         const confirmation = confirm(`Are you sure you want to delete product #${productId}?`);
         if (confirmation) {
-            const hash = await deleteProduct(chain, productId);
-            if (hash) {
-                loadProductsMethod(chain, pageNoCurrentProducts);
-                alert(`Product #${productId} deleted successfully!`);
-            } else processHash(hash);
+            const res = await deleteProduct(chain, productId);
+            if (!res?.success) return processError(res);
+            loadProductsMethod(chain, pageNoCurrentProducts);
+            alert(`Product #${productId} deleted successfully!`);
         };
     },
     merchantSignupMethod = async (
         chain: ChainIds,
     ): Promise<number | undefined> => {
 
-        const
-            confirmed = confirm(
-                `Merchant Signup Fee `
-                + await merchantFeeValueText(chain)
-            );
+        const res = await merchantFeeValueText(chain);
+        if (!res?.success) return processError(res);
+
+        const confirmed = confirm(`Merchant Signup Fee ${res?.data}`);
         if (confirmed) {
-            const {
-                hash,
-                merchantId,
-            }: any = await merchantSignup(chain);
-            if (merchantId) {
-                merchantUpdate(chain, merchantId);
-                alert(`Congratulations, you are now a merchant!`);
-            } else processHash(hash);
-            return;
+            const res = await merchantSignup(chain);
+            if (!res?.success) return processError(res);
+            const { hash, merchantId } = res?.data;
+            merchantUpdate(chain, merchantId);
+            alert(`Congratulations, you are now a merchant!`);
         };
     },
     payProductMethod = async (
         chain: ChainIds,
         product: ProductChain,
-    ): Promise<string | undefined> => {
+    ) => {
         const
             productId = product.id,
             quantity = prompt(`Enter product quantity (default = 1)`) || `1`,
-            confirmed = confirm(
-                `Product Payment ${await payValueText(
-                    chain,
-                    product,
-                    quantity,
-                )}`
+            text = await payValueText(
+                chain,
+                product,
+                quantity,
             );
+        if (typeof text != `string`) return
+
+        const confirmed = confirm(`Product Payment ${text}`);
         if (confirmed) {
-            const {
-                hash,
-                paymentId
-            }: any = await payProduct(chain, product, quantity);
-            if (hash && paymentId) {
-                loadPaymentsMethod(chain);
-                if (product.qtyCap) loadProductsMethod(chain, pageNoCurrentProducts);
-                alert(`Product #${productId} paid successfully! Payment #${paymentId}`);
-            } else processHash(hash);
-            return
+            const res = await payProduct(chain, product, quantity);
+            if (!res?.success) return processError(res);
+            const { hash, paymentId } = res?.data;
+            loadPaymentsMethod(chain);
+            if (product.qtyCap) loadProductsMethod(chain, pageNoCurrentProducts);
+            alert(`Product #${productId} paid successfully! Payment #${paymentId}`);
         };
     },
     /** Payment Unit */
@@ -506,18 +500,25 @@ const
         holdings: number,
     ) => {
         const
-            qty = prompt(`Stakes quantity to offer (max ${holdings})`) || `1`,
-            valuePerStake = prompt(`Value per stake`) || `0`,
-            hash = await offerStake(
-                chain,
-                qty,
-                toWei(valuePerStake)
-            );
-        if (typeof hash == `string`) {
-            loadStakes(chain);
-            processHash(hash);
-            return hash
+            qty = prompt(`Stakes quantity to offer (max ${holdings})`),
+            valuePerStake = prompt(`Value per stake`) || `0`;
+
+        if (!qty || !+qty || !+valuePerStake) {
+            alert(`Quantity and value per stake required`);
+            return
+        } else if (+qty > holdings) {
+            alert(`Quantity exceeds holdings`);
+            return
         };
+
+        const res = await offerStake(
+            chain,
+            qty,
+            toWei(valuePerStake)
+        );
+        if (!res?.success) return processError(res);
+        loadStakes(chain);
+        return res?.data
     },
     transferStakeMethod = async (
         chain: ChainIds,
@@ -526,12 +527,12 @@ const
         const
             qty = prompt(`Stakes quantity to transfer (max ${holdings})`) || `1`,
             to = (prompt(`Recipient address`) || ZERO_ADDRESS) as EVMAddress,
-            hash = await transferStake(chain, qty, to);
-        if (typeof hash == `string`) {
-            loadStakes(chain);
-            processHash(hash);
-            return hash
-        };
+            res = await transferStake(chain, qty, to);
+        if (!res?.success) return processError(res);
+        const hash = res?.data;
+        loadStakes(chain);
+        processHash(hash);
+        return hash
     },
     takeStakeMethod = async (
         chain: ChainIds,
@@ -544,12 +545,12 @@ const
             + processNumbers(fromWei(offerValue))
         );
         if (confirmed) {
-            const hash = await takeStake(chain, offerId);
-            if (typeof hash == `string`) {
-                loadStakes(chain);
-                processHash(hash);
-                return hash
-            };
+            const res = await takeStake(chain, offerId);
+            if (!res?.success) return processError(res);
+            const hash = res?.data;
+            loadStakes(chain);
+            processHash(hash);
+            return hash
         };
     },
     removeStakeOfferMethod = async (
@@ -558,22 +559,26 @@ const
     ) => {
         const confirmed = confirm(`Remove stake offer #${offerId}`);
         if (confirmed) {
-            const hash = await removeStakeOffer(chain, offerId);
+            const res = await removeStakeOffer(chain, offerId);
+            if (!res?.success) return processError(res);
             loadStakes(chain);
-            return hash
+            return res?.data
         };
     },
     loadStakes = async (
         chain: ChainIds
     ) => {
+        // total stakes
+        const totalStakesRes = await totalStakes(chain);
+        if (!totalStakesRes?.success) return processError(totalStakesRes);
+
+        // stake count
+        const stakesCountRes = await stakesCount(chain);
+        if (!stakesCountRes?.success) return processError(stakesCountRes);
+
         const
-            totalStakesRef = await totalStakes(chain),
-            totalStakesNumber: number = typeof totalStakesRef == `number` ? totalStakesRef : 1,
-            stakesCountRaw: any = await stakesCount(chain),
-            stakesCountNumber = stakesCountRaw?.errorCode ? {
-                holdings: 0,
-                offered: 0
-            } : stakesCountRaw,
+            totalStakesNumber = totalStakesRes?.data,
+            stakesCountNumber = stakesCountRes?.data,
             holdings = stakesCountNumber?.holdings || 0,
             offered = stakesCountNumber?.offered || 0,
             stakesOfferedObj = await stakesOffered(chain, onlyMyStakes),
@@ -606,12 +611,12 @@ const
                         mainText: `#${offerId}`,
                         subText: `${nativeSymbol} ${processNumbers(fromWei(offerValue))}`,
                         mainButtonText: `Take Stake`,
-                        mainButtonAction: async () => await takeStakeMethod(chain, offerId, offerValue, nativeSymbol),
+                        mainButtonAction: () => takeStakeMethod(chain, offerId, offerValue, nativeSymbol),
                         ...onlyMyStakes ? {
                             squareButtonLogo: `./assets/images/delete_icon.svg`,
                             squareButtonLogoAlt: `Delete icon`,
                             squareButtonDescription: `Remove Stake Offer`,
-                            squareButtonAction: async () => await removeStakeOfferMethod(chain, offerId),
+                            squareButtonAction: () => removeStakeOfferMethod(chain, offerId),
                         } : {},
                     });
                     index++;
@@ -641,7 +646,7 @@ const
     ) => {
         menu_connect.innerText = `Connect`;
         const browserWallet = getBrowserWallet();
-        if (browserWallet) await getProvider(chain);
+        if (browserWallet) getProvider(chain);
         menu_connect.onclick = async () => {
             let showMeToggle = false;
             if (!browserWallet) {
@@ -673,8 +678,9 @@ const
                     showMeToggle = true;
                 };
             } else {
-                const merchantId = await getMerchantId(chain);
-                merchantUpdate(chain, typeof merchantId == `string` ? merchantId : undefined);
+                const merchantIdRes = await getMerchantId(chain);
+                if(!merchantIdRes?.success) return processError(merchantIdRes);
+                merchantUpdate(chain, merchantIdRes?.data);
                 showMeToggle = true;
             };
             if (showMeToggle) {
