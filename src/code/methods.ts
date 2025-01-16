@@ -24,6 +24,7 @@ import {
     processNumbers,
     productFeeText,
     removeStakeOffer,
+    setSelectedChain,
     stakesCount,
     stakesOffered,
     takeStake,
@@ -184,7 +185,7 @@ const
 
         const
             tokenAddress = prompt(`Enter token address (default = native)`) as EVMAddress,
-            quantity = prompt(`Enter product quantity (default = unlimited)`) || `1`,
+            quantity = prompt(`Enter product quantity (default = unlimited)`) || `0`,
             commissionAddress = prompt(`Enter commission address (optional)`) as EVMAddress,
             commissionPercentage = prompt(`Enter commission percentage (0-100)`) || `0`,
             res = await updateProduct({
@@ -694,6 +695,9 @@ const
     initiate = async (
         chain: ChainIds
     ) => {
+
+        setSelectedChain(chain);
+
         const unitFrame = select(`.unit_frame`);
 
         if (!selectAllChild(`.unit_frame`, payments_list)?.length)
