@@ -680,8 +680,7 @@ const
                 };
             } else {
                 const merchantIdRes = await getMerchantId(chain);
-                if(!merchantIdRes?.success) return processError(merchantIdRes);
-                merchantUpdate(chain, merchantIdRes?.data);
+                merchantUpdate(chain, merchantIdRes?.success ? merchantIdRes?.data : ``);
                 showMeToggle = true;
             };
             if (showMeToggle) {
