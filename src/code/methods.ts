@@ -574,12 +574,13 @@ const
         if (!totalStakesRes?.success) return processError(totalStakesRes);
 
         // stake count
-        const stakesCountRes = await stakesCount(chain);
-        if (!stakesCountRes?.success) return processError(stakesCountRes);
-
         const
             totalStakesNumber = totalStakesRes?.data,
-            stakesCountNumber = stakesCountRes?.data,
+            stakesCountRes = await stakesCount(chain),
+            stakesCountNumber = stakesCountRes?.success ? stakesCountRes?.data : {
+                holdings: 0,
+                offered: 0
+            },
             holdings = stakesCountNumber?.holdings || 0,
             offered = stakesCountNumber?.offered || 0,
             stakesOfferedObj = await stakesOffered(chain, onlyMyStakes),
