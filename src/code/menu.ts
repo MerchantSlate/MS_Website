@@ -41,7 +41,6 @@ const
                 chainSymbol = id as ChainIds,
                 chain = chainsData[chainSymbol];
 
-            if (!chain.deployed) continue;
 
             const
                 button = menu_dropdown_buttonAll[i],
@@ -51,11 +50,15 @@ const
             menu_dropdown_textAll[i].innerText = chainSymbol;
 
             button.onclick = () => {
-                menu_dropdown_icon[0].src = chain.logo;
-                menu_dropdown_icon[1].src = `../assets/images/arrow_drop_down.svg`;
-                menu_dropdown_text.innerText = chainSymbol;
-                menu_dropdown_list.classList.add(`hide`);
-                initiate(chainSymbol);
+                if (chain.deployed) {
+                    menu_dropdown_icon[0].src = chain.logo;
+                    menu_dropdown_icon[1].src = `../assets/images/arrow_drop_down.svg`;
+                    menu_dropdown_text.innerText = chainSymbol;
+                    menu_dropdown_list.classList.add(`hide`);
+                    initiate(chainSymbol);
+                } else {
+                    alert(`Coming Soon!`);
+                };
             };
 
             i++
