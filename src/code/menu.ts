@@ -25,7 +25,7 @@ const
         const
             chainsData = getChainsData(),
             chainsList: BlockchainNetwork[] = Object.values(chainsData)
-                ?.filter((chainData: BlockchainNetwork) => chainData.deployed);
+                // ?.filter((chainData: BlockchainNetwork) => chainData.deployed);
 
         let menu_dropdown_button_wrapAll = selectAllChild(`.menu_dropdown_button_wrap`, menu_dropdown_list);
         repeat(chainsList?.length, menu_dropdown_list, menu_dropdown_button_wrapAll);
