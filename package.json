@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "merchantslate_website",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "/public_html/index.html",
   "keywords": [
     "merchant payments",
@@ -36,6 +36,7 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
+    "degreesign": "^1.0.1",
     "merchantslate": "^0.3.8"
   }
 }
