@@ -9,11 +9,6 @@
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
-# Add content type
-<Files about>
-  Header set Content-Type "text/html"
-</Files>
-
 # disable indexing
 Options -Indexes
 
@@ -28,3 +23,8 @@ Options -Indexes
 # Errors
 ErrorDocument 404 /404
 ErrorDocument 403 /404
+
+# Add content type
+<Files about>
+    Header set Content-Type "text/html"
+</Files>

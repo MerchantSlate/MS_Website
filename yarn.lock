@@ -342,6 +342,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.63.tgz#1788fa8da838dbb5f9ea994b834278205db6ca2b"
   integrity sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==
 
+"@types/node@^22.10.5":
+  version "22.15.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.15.3.tgz#b7fb9396a8ec5b5dfb1345d8ac2502060e9af68b"
+  integrity sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==
+  dependencies:
+    undici-types "~6.21.0"
+
 "@types/qs@*":
   version "6.9.17"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.17.tgz#fc560f60946d0aeff2f914eb41679659d3310e1a"
@@ -1258,10 +1265,29 @@ define-properties@^1.1.3, define-properties@^1.2.1:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-degreesign@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/degreesign/-/degreesign-1.0.6.tgz#1a9186f4f2753ef26dd8cc190454df02d8e67aae"
-  integrity sha512-MDlSBVEq1Ep1UPbzwu3uqmWer8wZFZKZtczFM0UWeq0pPHHwWC6LeTP6Wz+WOm0nl3iJsfcvcN/2CQiQ6CPvzw==
+degreesign@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/degreesign/-/degreesign-1.1.0.tgz#1b12fd3441eb9032199d24bd23f8f4de6daac98d"
+  integrity sha512-184qXREwK74ERxnLmc9gOReDAjm6dpMGTNZOJncbGdlK2JcxZ0JYfJMOYpiCQS/KofzNd96UkUj572V6Sw4MAA==
+  dependencies:
+    "@types/node" "^22.10.5"
+    clean-webpack-plugin "^4.0.0"
+    copy-webpack-plugin "^12.0.2"
+    css-loader "^7.1.2"
+    css-minimizer-webpack-plugin "^7.0.0"
+    dotenv "^16.4.7"
+    html-inline-css-webpack-plugin "^1.11.2"
+    html-webpack-plugin "^5.6.3"
+    javascript-obfuscator "^4.1.1"
+    mini-css-extract-plugin "^2.9.2"
+    sitemap-webpack-plugin "^1.1.1"
+    terser-webpack-plugin "^5.3.11"
+    ts-loader "^9.5.1"
+    typescript "^5.7.3"
+    webpack "^5.97.1"
+    webpack-cli "^6.0.1"
+    webpack-dev-server "^5.2.0"
+    webpack-obfuscator "^3.5.1"
 
 del@^4.1.1:
   version "4.1.1"
@@ -3689,6 +3715,11 @@ undici-types@~6.20.0:
   version "6.20.0"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.20.0.tgz#8171bf22c1f588d1554d55bf204bc624af388433"
   integrity sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==
+
+undici-types@~6.21.0:
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.21.0.tgz#691d00af3909be93a7faa13be61b3a5b50ef12cb"
+  integrity sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==
 
 unicorn-magic@^0.1.0:
   version "0.1.0"

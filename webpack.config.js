@@ -4,7 +4,7 @@ const
     websiteTitle = `instant payments for merchants`;
 
 module.exports = build({
-    mode: `production`, // `development` | `production` 
+    mode: `production`,
     appShortName: `Merchant`,
     websiteName,
     websiteDomain: `merchantslate.com`,
@@ -19,13 +19,12 @@ module.exports = build({
     background_color: `#fefefe`,
     theme_color: '#785afb',
     app_icon: `app_icon.png`,
-    orientation: 'portrait', // `portrait` | `landscape`
+    orientation: 'portrait',
     pagesList: [{
         uri: `about`,
         name: `About`,
         short_name: `About`,
         description: `About MerchantSlate`,
-        icon: ``,
         shortcut: true,
     }],
     htmlCommonElements: [`menu`, `footer`],
