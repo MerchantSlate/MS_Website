@@ -28,7 +28,7 @@ module.exports = build({
         icon: ``,
         shortcut: true,
     }],
-    htmlCommonElements: [`header`, `menu`, `footer`],
+    htmlCommonElements: [`menu`, `footer`],
     obfuscateON: false,
 
     // directories
