@@ -1,132 +1,115 @@
-<html lang="en">
-
-<head>
-  <%= htmlWebpackPlugin.options.links %>
-  <%= htmlWebpackPlugin.options.headerHTML %>
-  <title>
-    <%= htmlWebpackPlugin.options.title %>
-  </title>
-</head>
-
-<body>
-  <%= htmlWebpackPlugin.options.menuHTML %>
-  <img class="background" src="./assets/images/merchant_slate_cover.webp"
-    alt="Abstract and empowering digital artwork of a confident male merchant standing in the middle, with a female buyer beside him.">
-  <div class="hide main_elements">
-    <div class="unit_frame blur">
-      <div class="unit_cover">Loading...</div>
-      <div class="unit_token_container">
-        <div class="unit_token_imgs">
-          <img src="./assets/chains/tether-usdt-logo.png" alt="USDT Logo" class="unit_token_logo">
-          <img src="./assets/chains/arbitrum-arb-logo.png" alt="Arbitrum Logo"
-            class="unit_chain_logo blur">
-        </div>
-        <div class="column">
-          <div class="unit_main_text">_</div>
-          <div class="unit_sub_text">_</div>
-          <div class="unit_grid unit_grid_top">
-            <div class="column unit_grid_item">
-              <p class="unit_grid_text">_</p>
-              <p class="unit_grid_label">_</p>
-            </div>
-          </div>
-        </div>
+<img class="background" src="./assets/images/merchant_slate_cover.webp"
+  alt="Abstract and empowering digital artwork of a confident male merchant standing in the middle, with a female buyer beside him.">
+<div class="hide main_elements">
+  <div class="unit_frame blur">
+    <div class="unit_cover">Loading...</div>
+    <div class="unit_token_container">
+      <div class="unit_token_imgs">
+        <img src="./assets/chains/tether-usdt-logo.png" alt="USDT Logo" class="unit_token_logo">
+        <img src="./assets/chains/arbitrum-arb-logo.png" alt="Arbitrum Logo" class="unit_chain_logo blur">
       </div>
-      <div class="unit_details">
-        <div class="unit_grid unit_grid_bottom">
+      <div class="column">
+        <div class="unit_main_text">_</div>
+        <div class="unit_sub_text">_</div>
+        <div class="unit_grid unit_grid_top">
           <div class="column unit_grid_item">
             <p class="unit_grid_text">_</p>
             <p class="unit_grid_label">_</p>
           </div>
         </div>
-        <div class="unit_buttons">
-          <button class="unit_button unit_button_main">
-            Update
-          </button>
-          <button class="unit_button unit_button_outline unit_button_square">
-            <img class="unit_button_icon_small" src="./assets/images/delete_icon.svg">
-          </button>
-        </div>
-        <div class="unit_footer_text">_</div>
       </div>
     </div>
-  </div>
-  <div class="grid">
-
-    <!-- Payments Section -->
-    <div class="section blur payment_section">
-      <div class="column payments_list">
-        <div class="toggle_frame">
-          <button class="toggle_button_left toggle_button_selected">All</button>
-          <button class="toggle_button_right">Merchant</button>
-        </div>
-        <p class="section_heading">
-          Payments
-        </p>
-        <div class="toggle_switch_frame">
-          <button class="toggle_switch">
-            <div class="toggle_switch_nob"></div>
-            <p class="toggle_switch_text">Me</p>
-          </button>
+    <div class="unit_details">
+      <div class="unit_grid unit_grid_bottom">
+        <div class="column unit_grid_item">
+          <p class="unit_grid_text">_</p>
+          <p class="unit_grid_label">_</p>
         </div>
       </div>
-      <div class="unit_pagination">
-        <button class="unit_page_left disable">◂</button>
-        <p class="unit_page_no">1</p>
-        /
-        <p class="unit_page_total">1</p>
-        <button class="unit_page_right disable">▸</button>
-      </div>
-    </div>
-
-    <!-- Products Section -->
-    <div class="section blur product_section">
-      <div class="column products_list">
-        <div class="toggle_frame">
-          <button class="toggle_button_left toggle_button_selected">All</button>
-          <button class="toggle_button_right">Merchant</button>
-        </div>
-        <p class="section_heading">
-          Products
-        </p>
-        <button class="corner_button prod_add">
-          <img class="unit_button_icon_small" src="./assets/images/add_circle.svg">
+      <div class="unit_buttons">
+        <button class="unit_button unit_button_main">
+          Update
+        </button>
+        <button class="unit_button unit_button_outline unit_button_square">
+          <img class="unit_button_icon_small" src="./assets/images/delete_icon.svg">
         </button>
       </div>
-      <div class="unit_pagination">
-        <button class="unit_page_left disable">◂</button>
-        <p class="unit_page_no">1</p>
-        /
-        <p class="unit_page_total">1</p>
-        <button class="unit_page_right disable">▸</button>
-      </div>
-    </div>
-
-    <!-- Stakes List Section -->
-    <div class="section blur stakes_section hide">
-      <div class="column stakes_list">
-        <div class="toggle_switch_frame">
-          <button class="toggle_switch">
-            <div class="toggle_switch_nob"></div>
-            <p class="toggle_switch_text">Me</p>
-          </button>
-        </div>
-        <p class="section_heading">
-          Stake Offers
-        </p>
-      </div>
-    </div>
-
-    <!-- Stakes Distribution -->
-    <div class="section blur stakes_section_distribution hide">
-      <div class="column stakes_distribution">
-        <p class="section_heading">
-          Stake Holdings
-        </p>
-      </div>
+      <div class="unit_footer_text">_</div>
     </div>
   </div>
-  <%= htmlWebpackPlugin.options.footerHTML %>
-</body>
+</div>
+<div class="grid">
 
-</html>
+  <!-- Payments Section -->
+  <div class="section blur payment_section">
+    <div class="column payments_list">
+      <div class="toggle_frame">
+        <button class="toggle_button_left toggle_button_selected">All</button>
+        <button class="toggle_button_right">Merchant</button>
+      </div>
+      <p class="section_heading">
+        Payments
+      </p>
+      <div class="toggle_switch_frame">
+        <button class="toggle_switch">
+          <div class="toggle_switch_nob"></div>
+          <p class="toggle_switch_text">Me</p>
+        </button>
+      </div>
+    </div>
+    <div class="unit_pagination">
+      <button class="unit_page_left disable">◂</button>
+      <p class="unit_page_no">1</p>
+      /
+      <p class="unit_page_total">1</p>
+      <button class="unit_page_right disable">▸</button>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="section blur product_section">
+    <div class="column products_list">
+      <div class="toggle_frame">
+        <button class="toggle_button_left toggle_button_selected">All</button>
+        <button class="toggle_button_right">Merchant</button>
+      </div>
+      <p class="section_heading">
+        Products
+      </p>
+      <button class="corner_button prod_add">
+        <img class="unit_button_icon_small" src="./assets/images/add_circle.svg">
+      </button>
+    </div>
+    <div class="unit_pagination">
+      <button class="unit_page_left disable">◂</button>
+      <p class="unit_page_no">1</p>
+      /
+      <p class="unit_page_total">1</p>
+      <button class="unit_page_right disable">▸</button>
+    </div>
+  </div>
+
+  <!-- Stakes List Section -->
+  <div class="section blur stakes_section hide">
+    <div class="column stakes_list">
+      <div class="toggle_switch_frame">
+        <button class="toggle_switch">
+          <div class="toggle_switch_nob"></div>
+          <p class="toggle_switch_text">Me</p>
+        </button>
+      </div>
+      <p class="section_heading">
+        Stake Offers
+      </p>
+    </div>
+  </div>
+
+  <!-- Stakes Distribution -->
+  <div class="section blur stakes_section_distribution hide">
+    <div class="column stakes_distribution">
+      <p class="section_heading">
+        Stake Holdings
+      </p>
+    </div>
+  </div>
+</div>
