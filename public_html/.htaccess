@@ -15,9 +15,7 @@ Options -Indexes
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} off
-
-  # Unique files
-  # RewriteRule ^sw.js /code/sw.js [L,NC]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # Errors
@@ -25,6 +23,9 @@ ErrorDocument 404 /404
 ErrorDocument 403 /404
 
 # Add content type
+<Files home>
+    Header set Content-Type "text/html"
+</Files>
 <Files about>
     Header set Content-Type "text/html"
 </Files>
