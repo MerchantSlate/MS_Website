@@ -1,5 +1,7 @@
+
+import { build } from "degreesign"
+
 const
-    { build } = require(`degreesign`),
     websiteName = `MerchantSlate`,
     websiteTitle = `instant payments for merchants`;
 
@@ -14,13 +16,17 @@ module.exports = build({
     websiteDescription: `MerchantSlate instant payments for merchants with a built-in complete database`,
     coverImage: `merchant_slate_cover.webp`,
     coverImageDescription: `Screenshot of ${websiteName}\' ${websiteTitle}`,
-    notificationTitle: `MerchantSlate Notification`,
-    notificationText: `You have a new notification!`,
     background_color: `#fefefe`,
     theme_color: '#785afb',
     app_icon: `app_icon.png`,
     orientation: 'portrait',
     pagesList: [{
+        uri: `home`,
+        name: `MerchantSlate`,
+        short_name: `MerchantSlate`,
+        description: `MerchantSlate`,
+        shortcut: true,
+    }, {
         uri: `about`,
         name: `About`,
         short_name: `About`,
@@ -33,10 +39,13 @@ module.exports = build({
     // directories
     srcDir: `src`,
     assetsDir: `assets`,
-    developDir: `build`,
     commonDir: `common`,
     imagesDir: `images`,
     pagesDir: `pages`,
     pageHome: `home`,
     productionDir: `public_html`,
+
+    twitterUserName: `merchantslate`,
+    htaccessCustom: ``,
+    fav_icon: `favicon.ico`,
 });

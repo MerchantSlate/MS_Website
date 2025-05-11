@@ -740,6 +740,7 @@ const
             POLYGON_RPC: process.env.RPC_URL_POLYGON || ``,
             billionSuffix: `b`,
             millionSuffix: `m`,
+            merchantSlateContract: process.env.CONTRACT_ADDRESS || ``,
         });
 
         listChains(chain, initiate);

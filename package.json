@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "merchantslate_website",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "/public_html/index.html",
   "keywords": [
     "merchant payments",
@@ -21,7 +21,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
-    "degreesign": "^1.1.2",
+    "degreesign": "^1.3.7",
     "dotenv": "^16.4.7",
     "html-inline-css-webpack-plugin": "^1.11.2",
     "html-webpack-plugin": "^5.6.3",
@@ -37,6 +37,7 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
-    "merchantslate": "^0.5.0"
+    "merchantslate": "^0.5.0",
+    "ts-node": "^10.9.2"
   }
 }
