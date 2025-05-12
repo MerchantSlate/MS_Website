@@ -24,8 +24,8 @@ const
 
         const
             chainsData = getChainsData(),
-            chainsList: BlockchainNetwork[] = Object.values(chainsData)
-                // ?.filter((chainData: BlockchainNetwork) => chainData.deployed);
+            chainsList: [string, BlockchainNetwork][] = Object.entries(chainsData)
+        chainsList.sort((a, b) => a[1].deployed && !b[1].deployed ? -1 : 1);
 
         let menu_dropdown_button_wrapAll = selectAllChild(`.menu_dropdown_button_wrap`, menu_dropdown_list);
         repeat(chainsList?.length, menu_dropdown_list, menu_dropdown_button_wrapAll);
@@ -34,21 +34,17 @@ const
             menu_dropdown_buttonAll = selectAllChild(`.menu_dropdown_button`, menu_dropdown_list),
             menu_dropdown_textAll = selectAllChild(`.menu_dropdown_text`, menu_dropdown_list);
 
-        let i = 0;
-        for (const id in chainsData) {
-
+        for (let i = 0; i < chainsList.length; i++) {
             const
+                [id, chain] = chainsList[i],
                 chainSymbol = id as ChainIds,
-                chain = chainsData[chainSymbol];
-
-
-            const
                 button = menu_dropdown_buttonAll[i],
                 menu_dropdown_iconAll = selectAllChild(`.menu_dropdown_icon`, button);
 
             menu_dropdown_iconAll[0].src = chain.logo;
             menu_dropdown_textAll[i].innerText = chainSymbol;
 
+            button.style.opacity = chain.deployed ? 1 : 0.3;
             button.onclick = () => {
                 if (chain.deployed) {
                     menu_dropdown_icon[0].src = chain.logo;
@@ -56,14 +52,8 @@ const
                     menu_dropdown_text.innerText = chainSymbol;
                     menu_dropdown_list.classList.add(`hide`);
                     initiate(chainSymbol);
-                } else {
-                    alert(`Coming Soon!`);
-                };
+                } else alert(`Not Supported!`);
             };
-
-            button.style.opacity = chain.deployed ? 1 : 0.3;
-
-            i++
         };
 
         menu_dropdown_icon[0].src = chainsData[defaultChain]?.logo;
