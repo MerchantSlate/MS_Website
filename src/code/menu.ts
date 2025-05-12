@@ -61,6 +61,8 @@ const
                 };
             };
 
+            button.style.opacity = chain.deployed ? 1 : 0.3;
+
             i++
         };
 
