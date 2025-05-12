@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "merchantslate_website",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "/public_html/index.html",
   "keywords": [
     "merchant payments",
