@@ -261,6 +261,7 @@ section {
     padding: 15px 30px;
     font-size: 1.2em;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .cta_button_light {
@@ -317,6 +318,7 @@ input {
     opacity: 0.1;
     object-position: top;
     z-index: -1;
+    filter: blur(5px);
 }
 
 .blur {

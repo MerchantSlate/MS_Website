@@ -1,14 +1,14 @@
+import { selectAll, selectElement } from "@degreesign/ui";
 import { menu_buttons } from "./menu";
-import { select, selectAll } from "./selectors";
 
 type PageTypes = `home` | `stakes` | `about`;
 
 const
     // footer buttons
     footer_button = selectAll(`.footer_button`),
-    footer_stakes_button = select(`.footer_stakes_button`),
-    footer_home_button = select(`.footer_home_button`),
-    footer_about_button = select(`.footer_about_button`),
+    footer_stakes_button = selectElement(`.footer_stakes_button`),
+    footer_home_button = selectElement(`.footer_home_button`),
+    footer_about_button = selectElement(`.footer_about_button`),
 
     // Get current page
     getCurrentPage = () => {

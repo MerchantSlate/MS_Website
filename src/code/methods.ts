@@ -35,14 +35,9 @@ import {
     updateProduct
 } from "merchantslate"
 import { itemUnit } from './ui';
-import {
-    repeat,
-    select,
-    selectAll,
-    selectAllChild
-} from './selectors';
 import { listChains } from './menu';
 import { getCurrentPage } from "./footer";
+import { repeatElements, selectAll, selectElement } from "@degreesign/ui";
 
 type ListType = `payments` | `products`;
 
@@ -55,7 +50,7 @@ let
 
 const
     isStakes = getCurrentPage() == `stakes`,
-    menu_connect = select(`.menu_connect`),
+    menu_connect = selectElement(`.menu_connect`),
     processError = (error: ErrorResponse) => {
         alert(error?.errorNote);
         return undefined
@@ -69,11 +64,11 @@ const
         };
         return undefined
     },
-    prod_add = select(`.prod_add`),
-    payment_section = select(`.payment_section`),
-    payments_list = select(`.payments_list`),
-    product_section = select(`.product_section`),
-    products_list = select(`.products_list`),
+    prod_add = selectElement(`.prod_add`),
+    payment_section = selectElement(`.payment_section`),
+    payments_list = selectElement(`.payments_list`),
+    product_section = selectElement(`.product_section`),
+    products_list = selectElement(`.products_list`),
 
     // toggle
     toggle_frame = selectAll(`.toggle_frame`),
@@ -91,10 +86,10 @@ const
     unit_page_right = selectAll(`.unit_page_right`),
 
     // stake list
-    stakes_section = select(`.stakes_section`),
-    stakes_section_distribution = select(`.stakes_section_distribution`),
-    stakes_list = select(`.stakes_list`),
-    stakes_distribution = select(`.stakes_distribution`),
+    stakes_section = selectElement(`.stakes_section`),
+    stakes_section_distribution = selectElement(`.stakes_section_distribution`),
+    stakes_list = selectElement(`.stakes_list`),
+    stakes_distribution = selectElement(`.stakes_distribution`),
 
     // page size defaults
     pageSizeDefaultProducts = `3`,
@@ -106,10 +101,10 @@ const
     ) => {
         const
             index = listType == `products` ? 1 : 0,
-            left = toggle_button_left[index],
-            right = toggle_button_right[index];
+            left = toggle_button_left[index] as HTMLButtonElement,
+            right = toggle_button_right[index] as HTMLButtonElement;
 
-        toggle_frame[index].style.display = +merchantId ? `flex` : `none`;
+        (toggle_frame[index] as HTMLDivElement).style.display = +merchantId ? `flex` : `none`;
 
         left.onclick = () => {
             left.classList.add(`toggle_button_selected`);
@@ -379,14 +374,14 @@ const
         try {
             const
                 index = listType == `payments` ? 0 : 1,
-                left = unit_page_left[index],
-                right = unit_page_right[index];
+                left = unit_page_left[index] as HTMLButtonElement,
+                right = unit_page_right[index] as HTMLButtonElement;
             previousPage == undefined ? left.classList.add(`disable`)
                 : left.classList.remove(`disable`);
             nextPage == undefined ? right.classList.add(`disable`)
                 : right.classList.remove(`disable`);
-            unit_page_total[index].innerText = totalPages;
-            unit_page_no[index].innerText = currentPage;
+            unit_page_total[index].textContent = totalPages;
+            unit_page_no[index].textContent = currentPage;
             left.onclick = () => previousPage == undefined ? {}
                 : fun(previousPage);
             right.onclick = () => nextPage == undefined ? {}
@@ -413,9 +408,13 @@ const
                 products = data?.productsData;
 
             // repeat elements
-            let productUnits = selectAllChild(`.unit_frame`, products_list);
-            repeat(products?.length, products_list, productUnits);
-            productUnits = selectAllChild(`.unit_frame`, products_list);
+            let productUnits = selectAll(`.unit_frame`, products_list);
+            repeatElements({
+                targetCount: products?.length,
+                parent: products_list,
+                children: productUnits
+            });
+            productUnits = selectAll(`.unit_frame`, products_list);
 
             // render products
             if (products?.length)
@@ -468,9 +467,13 @@ const
                 payments = data?.paymentsData;
 
             // repeat elements
-            let paymentUnits = selectAllChild(`.unit_frame`, payments_list);
-            repeat(payments?.length, payments_list, paymentUnits);
-            paymentUnits = selectAllChild(`.unit_frame`, payments_list);
+            let paymentUnits = selectAll(`.unit_frame`, payments_list);
+            repeatElements({
+                targetCount: payments?.length,
+                parent: payments_list,
+                children: paymentUnits
+            });
+            paymentUnits = selectAll(`.unit_frame`, payments_list);
 
             // render payments
             if (payments?.length)
@@ -591,9 +594,13 @@ const
             )?.length;
 
         // repeat elements
-        let stakeOffers = selectAllChild(`.unit_frame`, stakes_list);
-        repeat(stakesOfferedCount, stakes_list, stakeOffers);
-        stakeOffers = selectAllChild(`.unit_frame`, stakes_list);
+        let stakeOffers = selectAll(`.unit_frame`, stakes_list);
+        repeatElements({
+            targetCount: stakesOfferedCount,
+            parent: stakes_list,
+            children: stakeOffers
+        });
+        stakeOffers = selectAll(`.unit_frame`, stakes_list);
 
         if (!stakesOfferedCount) {
             itemUnit({
@@ -628,7 +635,7 @@ const
 
         itemUnit({
             isShort: true,
-            unit_frame: selectAllChild(`.unit_frame`, stakes_distribution)[0],
+            unit_frame: selectAll(`.unit_frame`, stakes_distribution)[0],
             mainText: `${holdings + offered} stakes `
                 + `(${(100 * (holdings + offered) / totalStakesNumber)?.toFixed(1)}%) `
                 + (offered ? `- offered (${offered})` : ``),
@@ -685,10 +692,10 @@ const
                 showMeToggle = true;
             };
             if (showMeToggle) {
-                toggle_switch_frame[1].style.display =
-                    toggle_switch_frame[0].style.display = `flex`;
-                toggle_switch[1].onclick = () => toggleUpdate(chain, `stakes`);
-                toggle_switch[0].onclick = () => toggleUpdate(chain, `payments`);
+                (toggle_switch_frame[1] as HTMLDivElement).style.display =
+                    (toggle_switch_frame[0] as HTMLDivElement).style.display = `flex`;
+                (toggle_switch[1] as HTMLButtonElement).onclick = () => toggleUpdate(chain, `stakes`);
+                (toggle_switch[0] as HTMLButtonElement).onclick = () => toggleUpdate(chain, `payments`);
             };
         };
     },
@@ -698,19 +705,19 @@ const
 
         setSelectedChain(chain);
 
-        const unitFrame = select(`.unit_frame`);
+        const unitFrame = selectElement(`.unit_frame`);
 
-        if (!selectAllChild(`.unit_frame`, payments_list)?.length)
-            payments_list.appendChild(unitFrame.cloneNode(1));
+        if (!selectAll(`.unit_frame`, payments_list)?.length)
+            payments_list.appendChild(unitFrame.cloneNode(true));
 
-        if (!selectAllChild(`.unit_frame`, products_list)?.length)
-            products_list.appendChild(unitFrame.cloneNode(1));
+        if (!selectAll(`.unit_frame`, products_list)?.length)
+            products_list.appendChild(unitFrame.cloneNode(true));
 
-        if (!selectAllChild(`.unit_frame`, stakes_list)?.length)
-            stakes_list.appendChild(unitFrame.cloneNode(1));
+        if (!selectAll(`.unit_frame`, stakes_list)?.length)
+            stakes_list.appendChild(unitFrame.cloneNode(true));
 
-        if (!selectAllChild(`.unit_frame`, stakes_distribution)?.length)
-            stakes_distribution.appendChild(unitFrame.cloneNode(1));
+        if (!selectAll(`.unit_frame`, stakes_distribution)?.length)
+            stakes_distribution.appendChild(unitFrame.cloneNode(true));
 
         const
             stakePage = () => {

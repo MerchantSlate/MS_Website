@@ -1,4 +1,4 @@
-import { repeat, selectAllChild, selectChild } from "./selectors";
+import { repeatElements, selectAll, selectElement } from "@degreesign/ui";
 
 interface GridData {
     text: string,
@@ -17,14 +17,18 @@ const
             parent.style.display = `none`;
             return
         };
-        repeat(gridData?.length, parent, selectAllChild(`.unit_grid_item`, parent));
+        repeatElements({
+            targetCount: gridData?.length,
+            parent,
+            children: selectAll(`.unit_grid_item`, parent),
+        });
         const
-            unit_grid_text = selectAllChild(`.unit_grid_text`, parent),
-            unit_grid_label = selectAllChild(`.unit_grid_label`, parent);
+            unit_grid_text = selectAll(`.unit_grid_text`, parent),
+            unit_grid_label = selectAll(`.unit_grid_label`, parent);
         for (let i = 0; i < gridData.length; i++) {
             const { text, label } = gridData[i];
-            unit_grid_text[i].innerText = text;
-            unit_grid_label[i].innerText = label;
+            unit_grid_text[i].textContent = text;
+            unit_grid_label[i].textContent = label;
         };
         parent.style.display = `grid`;
     },
@@ -65,10 +69,10 @@ const
         footerText,
         mainButtonText,
         mainButtonAction,
-        squareButtonLogo,
-        squareButtonLogoAlt,
+        squareButtonLogo = ``,
+        squareButtonLogoAlt = ``,
+        squareButtonDescription = ``,
         squareButtonAction,
-        squareButtonDescription,
         isShort,
     }: {
         unit_frame: any,
@@ -92,17 +96,17 @@ const
     }) => {
 
         const
-            unit_cover = selectChild(`.unit_cover`, unit_frame),
-            unit_token_imgs = selectChild(`.unit_token_imgs`, unit_frame),
-            unit_token_logo = selectChild(`.unit_token_logo`, unit_frame),
-            unit_chain_logo = selectChild(`.unit_chain_logo`, unit_frame),
-            unit_main_text = selectChild(`.unit_main_text`, unit_frame),
-            unit_sub_text = selectChild(`.unit_sub_text`, unit_frame),
-            unit_buttons = selectChild(`.unit_buttons`, unit_frame),
-            unit_button_main = selectChild(`.unit_button_main`, unit_frame),
-            unit_button_square = selectChild(`.unit_button_square`, unit_frame),
-            unit_button_icon_small = selectChild(`.unit_button_icon_small`, unit_frame),
-            unit_footer_text = selectChild(`.unit_footer_text`, unit_frame);
+            unit_cover = selectElement(`.unit_cover`, unit_frame),
+            unit_token_imgs = selectElement(`.unit_token_imgs`, unit_frame),
+            unit_token_logo = selectElement(`.unit_token_logo`, unit_frame),
+            unit_chain_logo = selectElement(`.unit_chain_logo`, unit_frame),
+            unit_main_text = selectElement(`.unit_main_text`, unit_frame),
+            unit_sub_text = selectElement(`.unit_sub_text`, unit_frame),
+            unit_buttons = selectElement(`.unit_buttons`, unit_frame),
+            unit_button_main = selectElement(`.unit_button_main`, unit_frame),
+            unit_button_square = selectElement(`.unit_button_square`, unit_frame),
+            unit_button_icon_small = selectElement(`.unit_button_icon_small`, unit_frame) as HTMLImageElement,
+            unit_footer_text = selectElement(`.unit_footer_text`, unit_frame);
 
         // logos
         itemImg({
@@ -136,13 +140,13 @@ const
 
         // top grid
         itemGrid({
-            parent: selectChild(`.unit_grid_top`, unit_frame),
+            parent: selectElement(`.unit_grid_top`, unit_frame),
             gridData: gridDataTop,
         });
 
         // bottom grid
         itemGrid({
-            parent: selectChild(`.unit_grid_bottom`, unit_frame),
+            parent: selectElement(`.unit_grid_bottom`, unit_frame),
             gridData: gridDataBottom,
         });
 
