@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /404
 
+
+
 Sitemap: https://merchantslate.com/sitemap.xml
