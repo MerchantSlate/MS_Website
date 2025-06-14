@@ -48,9 +48,10 @@ const
                 [id, chain] = chainsList[i],
                 chainSymbol = id as ChainIds,
                 button = menu_dropdown_buttonAll[i] as HTMLButtonElement,
-                menu_dropdown_iconAll = selectAll(`.menu_dropdown_icon`, button);
+                menu_dropdown_iconAll = selectElement(`.menu_dropdown_icon`, button) as HTMLImageElement;
 
-            (menu_dropdown_iconAll[0] as HTMLImageElement).src = chain.logo;
+            menu_dropdown_iconAll.src = chain.logo;
+            menu_dropdown_iconAll.alt = `${chain.chainName} chain logo`;
             menu_dropdown_textAll[i].textContent = chainSymbol;
 
             button.style.opacity = chain.deployed ? `1` : `0.3`;
@@ -66,6 +67,7 @@ const
         };
 
         dropdownIcon0.src = chainsData[defaultChain]?.logo;
+        dropdownIcon0.alt = `${chainsData[defaultChain]?.chainName} chain logo`;
         dropdownIcon1.src = `../assets/images/arrow_drop_down.svg`;
         menu_dropdown_text.innerText = defaultChain;
     };

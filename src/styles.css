@@ -566,7 +566,7 @@ input {
 .unit_quantity,
 .unit_total,
 .unit_fees {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1;
     text-overflow: ellipsis;
     text-align: left;
