@@ -37,6 +37,7 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
+    "@degreesign/ui": "^1.0.3",
     "merchantslate": "^0.5.6",
     "ts-node": "^10.9.2"
   }
