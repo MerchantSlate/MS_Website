@@ -913,9 +913,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001688:
-  version "1.0.30001692"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001692.tgz#4585729d95e6b95be5b439da6ab55250cd125bf9"
-  integrity sha512-A95VKan0kdtrsnMubMKxEKUKImOPSuCpYgxSQBo036P5YYgVIcOYJEgt/txJWqObiRQeISNCfef9nvlQ0vbV7A==
+  version "1.0.30001733"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001733.tgz"
+  integrity sha512-e4QKw/O2Kavj2VQTKZWrwzkt3IxOmIlU6ajRb6LP64LHpBo1J67k2Hi4Vu/TgJWsNtynurfS0uK3MaUTCPfu5Q==
 
 chalk@4.1.2, chalk@^4.0.0, chalk@^4.1.0:
   version "4.1.2"
@@ -2471,10 +2471,10 @@ memfs@^4.6.0:
     tree-dump "^1.0.1"
     tslib "^2.0.0"
 
-merchantslate@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/merchantslate/-/merchantslate-0.5.6.tgz#644c91856667e744557b7f34c989af0c673781ee"
-  integrity sha512-hGfLQLjGvA74VsSQiTDCdK+2HEdzUkbiC7CmN5shIz4ckcm6YP2YeBx9wd3OPl/Lyu3iZwVHB7q4EzZZ8a8Fgg==
+merchantslate@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/merchantslate/-/merchantslate-0.6.3.tgz#61fbd6f9cd7378d2f3d302947904ced525e0a0eb"
+  integrity sha512-jz8yBuVe7R6+Al0eCxeFZjqenIRM358fcU7KL8upXbb8SYZOyRpuZwehUt6G802dWLH9oq7qnXKiVg4ENtQGgA==
   dependencies:
     ethers "^6.13.4"
     node-fetch "^3.3.2"

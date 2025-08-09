@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@degreesign/ui": "^1.0.3",
-    "merchantslate": "^0.5.6",
+    "merchantslate": "^0.6.3",
     "ts-node": "^10.9.2"
   }
 }

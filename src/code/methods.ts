@@ -277,25 +277,28 @@ const
                 paymentTime,
                 buyerAddressTxt,
                 paidPrice,
+                paidPriceUSD,
                 paidTotal,
+                paidTotalUSD,
                 paidQty,
                 paidFee,
+                paidFeeUSD,
             } = payment;
 
         itemUnit({
             unit_frame,
             gridDataBottom: [{
                 text: paidPrice,
-                label: `Price`,
+                label: `Price ~ $${processNumbers(paidPriceUSD)}`,
             }, {
                 text: paidTotal,
-                label: `Total`,
+                label: `Total ~ $${processNumbers(paidTotalUSD)}`,
             }, {
                 text: paidQty,
                 label: `Quantity`,
             }, {
                 text: paidFee,
-                label: `Fee 0.1%`,
+                label: `Fee 0.1% ~ $${processNumbers(paidFeeUSD)}`,
             }],
             tokenLogoImg,
             tokenLogoAlt,
