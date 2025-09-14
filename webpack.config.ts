@@ -6,6 +6,8 @@ const
     websiteTitle = `instant payments for merchants`;
 
 module.exports = build({
+    type: `webapp`,
+    openAnalyzer: true,
     mode: `production`,
     appShortName: `Merchant`,
     websiteName,

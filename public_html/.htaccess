@@ -23,7 +23,7 @@ ErrorDocument 404 /404
 ErrorDocument 403 /404
 
 # Add content type
-<Files home>
+<Files index.html>
     Header set Content-Type "text/html; charset=UTF-8"
 </Files>
 <Files about>
