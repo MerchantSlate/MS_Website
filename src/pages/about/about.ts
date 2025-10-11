@@ -1,7 +1,7 @@
-import { selectElement } from "@degreesign/ui";
-import { updateFooter } from "../../code/footer";
 import '../../styles.css';
 import { getConfig } from "merchantslate";
+import { selectElement } from "@degreesign/ui";
+import { updateFooter } from "../../code/footer";
 
 updateFooter(`about`);
 
