@@ -1,13 +1,16 @@
 
 import { build } from "degreesign"
+import dotenv from 'dotenv';
+dotenv.config();
 
 const
+    isDevelopment = process.env.DEVELOPMENT_ENV == `true`,
     websiteName = `MerchantSlate`,
     websiteTitle = `instant payments for merchants`;
 
 module.exports = build({
     type: `webapp`,
-    openAnalyzer: true,
+    openAnalyzer: !isDevelopment,
     mode: `production`,
     appShortName: `Merchant`,
     websiteName,
@@ -45,7 +48,7 @@ module.exports = build({
     imagesDir: `images`,
     pagesDir: `pages`,
     pageHome: `home`,
-    productionDir: `public_html`,
+    productionDir: isDevelopment ? `build` : `public_html`,
 
     twitterUserName: `merchantslate`,
     htaccessCustom: ``,
