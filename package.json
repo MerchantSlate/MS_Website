@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "merchantslate_website",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "main": "/public_html/index.html",
   "scripts": {
     "start": "DEVELOPMENT_ENV=true webpack serve --config webpack.config.ts",
@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@degreesign/ui": "^1.0.8",
-    "merchantslate": "^0.6.9"
+    "merchantslate": "^0.7.4"
   }
 }

@@ -20,6 +20,7 @@ import {
     merchantSignup,
     offerStake,
     payProduct,
+    payValidation,
     payValueText,
     processNumbers,
     productFeeText,
@@ -254,6 +255,18 @@ const
             const res = await payProduct(chain, product, quantity);
             if (!res?.success) return processError(res);
             const { hash, paymentId } = res?.data;
+
+            // test validation
+            const resValid = await payValidation({
+                chain,
+                productId: product.id,
+                validationRange: 20,
+            });
+            if (!resValid?.success) return processError(resValid);
+            const { paid, id } = resValid?.data;
+            console.log(`Paid`, paid, `#${id || ``}`);
+
+            // success
             loadPaymentsMethod(chain);
             if (product.qtyCap) loadProductsMethod(chain, pageNoCurrentProducts);
             alert(`Product #${productId} paid successfully! Payment #${paymentId}`);
