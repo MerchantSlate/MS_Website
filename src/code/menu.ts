@@ -1,4 +1,4 @@
-import { BlockchainNetwork, ChainIds, getChainsData } from "merchantslate";
+import { BlockchainNetwork, ChainIds, getChainsData } from "@merchantslate/legacy";
 import { repeatElements, selectAll, selectElement } from "@degreesign/ui";
 import textStrings from "../text.json"
 

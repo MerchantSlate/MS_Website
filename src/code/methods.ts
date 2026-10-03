@@ -34,7 +34,7 @@ import {
     transferStake,
     truncateText,
     updateProduct
-} from "merchantslate"
+} from "@merchantslate/legacy"
 import { itemUnit } from './ui';
 import { listChains } from './menu';
 import { getCurrentPage } from "./footer";
@@ -764,6 +764,29 @@ const
             billionSuffix: `b`,
             millionSuffix: `m`,
             merchantSlateContract: process.env.CONTRACT_ADDRESS || ``,
+            getTokenLogo: async (
+                chain: ChainIds,
+                tokenAddress: EVMAddress,
+            ): Promise<string | undefined> => {
+                const
+                    ids: Record<ChainIds, string> = {
+                        ETH: `ethereum`,
+                        APT: `aptos`,
+                        BSC: `binance-smart-chain`,
+                        POLYGON: `polygon`,
+                        AVALANCHE: `avalanche-2`,
+                        FANTOM: `fantom`,
+                        ARBITRUM: `arbitrum`,
+                        OPTIMISM: `optimism`,
+                        CELO: `celo`,
+                    },
+                    response = await fetch(
+                        `https://api.coingecko.com/api/v3/coins/`
+                        + `${ids[chain]}/contract/${tokenAddress}`
+                    ),
+                    data = await response?.json();
+                return data?.image?.large
+            },
         });
 
         listChains(chain, initiate);

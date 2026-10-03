@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@degreesign/ui": "^1.0.8",
-    "merchantslate": "^0.7.6"
+    "@merchantslate/legacy": "^1.3.0"
   }
 }

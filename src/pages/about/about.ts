@@ -1,5 +1,5 @@
 import '../../styles.css';
-import { getConfig } from "merchantslate";
+import { getConfig } from "@merchantslate/legacy";
 import { selectElement } from "@degreesign/ui";
 import { updateFooter } from "../../code/footer";
 
